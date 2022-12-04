@@ -1,8 +1,9 @@
-
+import debounce from 'lodash.debounce';
 import './css/styles.css';
-
-
+import {Notify} from 'notiflix';
 import fetchImages from './fetchImages.js';
+
+
 const form=document.querySelector(`#search-box`)
 const listOfCoutrys=document.querySelector(`.country-list`)
 const countryInfo=document.querySelector(`.country-info`)
@@ -15,7 +16,7 @@ form.addEventListener(`input`, debounce(onSerch,DEBOUNCE_DELAY) )
 function onSerch(){
 const serchInput=form.value.trim();
 if (serchInput==""){clearMarkupAll()}
-fetchCountries(serchInput).then(data=>
+fetchImages(serchInput).then(data=>
 {if(data==undefined){console.log("Немає такої країни ")}
 else if(data.length===1){createCountryInfo(data); listOfCoutrys.innerHTML=``}
 else if(data.length>=2 && data.length<=10){createList(data);countryInfo.innerHTML = '';}

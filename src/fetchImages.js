@@ -1,4 +1,6 @@
 
+import { Notify } from "notiflix" 
+
 export default fetchImages
 
 function fetchImages(name){const base_url=`https://restcountries.com/v2/name/`
