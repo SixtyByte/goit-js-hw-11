@@ -1,8 +1,8 @@
-import debounce from 'lodash.debounce';
-import './css/styles.css';
-import {Notify} from 'notiflix';
 
-import fetchCountries from './fetchImages.js';
+import './css/styles.css';
+
+
+import fetchImages from './fetchImages.js';
 const form=document.querySelector(`#search-box`)
 const listOfCoutrys=document.querySelector(`.country-list`)
 const countryInfo=document.querySelector(`.country-info`)
