@@ -7,7 +7,7 @@ import fetchImages from './fetchImages.js';
 
 const form=document.querySelector(`#search-form`)
 const photoCard=document.querySelector(`.photo-card`)
-const DEBOUNCE_DELAY = 300;
+
 
 
 
@@ -17,21 +17,20 @@ function onSerch(event){
 event.preventDefault();
 const formEl=event.currentTarget.elements;
 let text=formEl.searchQuery.value
-console.log(text)
+
 if (text==""){clearMarkupAll()}
-fetchImages(text).then(data=>
-{console.log(data)}
+fetchImages(text).then(data=>{console.log(data)}
 
 );
 
-
+}
 
 
 
 function clearMarkupAll(){ countryInfo.innerHTML = ''; listOfCoutrys.innerHTML=``}
 
-function createCountryInfo(arr){ 
-const markup=arr.map(item=>`<img src="" alt="" loading="lazy" />
+function createGallery(arr){ 
+const markup=arr.map(item=>`<img src="${item.webformatURL}" alt="" loading="lazy" />
 <div class="info">
   <p class="info-item">
     <b>Likes</b>
@@ -47,5 +46,4 @@ const markup=arr.map(item=>`<img src="" alt="" loading="lazy" />
   </p>
 </div>`).join('');
 photoCard.innerHTML =markup 
-}
 }
