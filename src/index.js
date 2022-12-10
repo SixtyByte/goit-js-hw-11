@@ -36,7 +36,7 @@ else if(data.data.hits.length>=40){loadMore.hidden=false;} else if (data.data.hi
 
 }
 
-function onload(){pages+=1;fetchImages(form.elements.searchQuery.value).then(data=>{createGallery(data);totalLoad+=Number(data.data.hits.length);console.log(totalLoad);if(data.data.hits.length<40){ loadMore.disabled=true; Notify.failure(`We're sorry, but you've reached the end of search results.".`);}})}
+function onload(){pages+=1;fetchImages(form.elements.searchQuery.value,pages).then(data=>{createGallery(data);totalLoad+=Number(data.data.hits.length);console.log(totalLoad);if(data.data.hits.length<40){ loadMore.disabled=true; Notify.failure(`We're sorry, but you've reached the end of search results.".`);}})}
 
 function clearMarkupAll(){ photoCard.innerHTML = ''}
 
@@ -61,11 +61,10 @@ const markup=arr.data.hits.map(item=>`<div class="photo-card">
 </div>`).join('');
 gallery.innerHTML =markup 
 }
-
-
-function fetchImages(name,page){const base_url=`https://pixabay.com/api/?key=`
-  const API_KEY=`31935683-a10b01c36d3de5d3933439cde`
-  return axios.get(`${base_url}${API_KEY}&q=${name}&image_type=photo&orientation =horizontal&safesearch =true&per_page=40&page=${pages}`).then(resp=>{return resp;}).catch(err=>console.error(err))
+const API_KEY=`31935683-a10b01c36d3de5d3933439cde`
+const base_url=`https://pixabay.com/api/?key=`
+const fetchImages=async(name,pages)=>{
+  return axios.get(`${base_url}${API_KEY}&q=${name}&image_type=photo&orientation =horizontal&safesearch =true&per_page=40&page=${pages}`)
   
   }
 
