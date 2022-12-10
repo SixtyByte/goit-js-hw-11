@@ -7,11 +7,12 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image:url("https://st2.depositphotos.com/1624647/8025/i/950/depositphotos_80255140-stock-photo-texture-background-old-maps.jpg");
+  background-color: aquamarine;
   color: #212121;
   line-height: 1.5;
   background-repeat: no-repeat;
-  background-size:100%
+  background-size:100%;
+  margin:20px;
 }
 
 #search-box {
@@ -21,5 +22,10 @@ body {
   margin-bottom: 16px;
 }
 li{list-style-type:none}
-.country-info-list{background-image:url("https://i.stack.imgur.com/LCCB6.jpg"); border-style: solid;border-color:silver; padding: 10px;}
-.country-result{background-image:url("https://i.stack.imgur.com/LCCB6.jpg"); border-style: solid; border-color: silver; }
+
+.info{background-color: white;display: inline;}
+.gallery{display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; object-fit: cover; }
+.photo-card{object-fit: cover; margin-top: 20px;  }
+.info{background-color: white;display: flex; gap:20px; justify-content: center;width: 600px}
+
+.image-item{width:600px}
