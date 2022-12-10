@@ -1,7 +1,7 @@
 import axios from 'axios';
 import './css/styles.css';
 import {Notify} from 'notiflix'
-let total;
+let totalLoad;
 
 
 
@@ -19,7 +19,8 @@ loadMore.addEventListener(`click`, onload);
 form.addEventListener(`click`, onSerch )
 
 function onSerch(event){
-pages=1
+pages=1;
+totalLoad=0;
 event.preventDefault();
 const formEl=event.currentTarget.elements;
 let text=formEl.searchQuery.value
@@ -27,7 +28,7 @@ if (text=='') {return Notify.failure("Напиши щось")
   
 }
 if (text==""){clearMarkupAll()}
-fetchImages(text,1).then(data=>{createGallery(data);  if(data.data.hits.length<40&data.data.hits.length>1){ loadMore.disabled=true; Notify.failure(`We're sorry, but you've reached the end of search results.".`);}
+fetchImages(text,1).then(data=>{createGallery(data); if(data.data.hits.length<40&data.data.hits.length>1){ loadMore.disabled=true; Notify.failure(`We're sorry, but you've reached the end of search results.".`);}
 else if(data.data.hits.length>=40){loadMore.hidden=false;} else if (data.data.hits.length==0) {Notify.failure(`Oops, there no image`);loadMore.hidden=true;
 }}
 
@@ -35,8 +36,7 @@ else if(data.data.hits.length>=40){loadMore.hidden=false;} else if (data.data.hi
 
 }
 
-function onload(){pages+=1; fetchImages(form.elements.searchQuery.value).then(createGallery).then(total+=data.data.hits.length);
-console.log(total) }
+function onload(){pages+=1;fetchImages(form.elements.searchQuery.value).then(data=>{createGallery(data);totalLoad+=Number(data.data.hits.length);console.log(totalLoad);if(data.data.hits.length<40){ loadMore.disabled=true; Notify.failure(`We're sorry, but you've reached the end of search results.".`);}})}
 
 function clearMarkupAll(){ photoCard.innerHTML = ''}
 
