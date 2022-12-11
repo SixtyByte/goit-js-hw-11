@@ -36,7 +36,7 @@ else if(data.data.hits.length>=40){loadMore.hidden=false;} else if (data.data.hi
 
 }
 
-function onload(){pages+=1;fetchImages(form.elements.searchQuery.value,pages).then(data=>{createGallery(data);totalLoad+=Number(data.data.hits.length);console.log(totalLoad);if(data.data.hits.length<40){ loadMore.disabled=true; Notify.failure(`We're sorry, but you've reached the end of search results.".`);}})}
+function onload(){pages+=1;fetchImages(form.elements.searchQuery.value,pages).then(data=>{addGallery(data);totalLoad+=Number(data.data.hits.length);console.log(totalLoad);if(data.data.hits.length<40){ loadMore.disabled=true; Notify.failure(`We're sorry, but you've reached the end of search results.".`);}})}
 
 function clearMarkupAll(){ photoCard.innerHTML = ''}
 
@@ -61,6 +61,28 @@ const markup=arr.data.hits.map(item=>`<div class="photo-card">
 </div>`).join('');
 gallery.innerHTML =markup 
 }
+
+function addGallery(arr){ 
+  console.log(arr)
+  const markup=arr.data.hits.map(item=>`<div class="photo-card">
+  <img src="${item.webformatURL}" alt="${item.tags}" loading="lazy" class="image-item" />
+  <div class="info">
+    <p class="info-item">
+      <b>Likes ${item.likes}</b>
+    </p>
+    <p class="info-item">
+      <b>Views ${item.views}</b>
+    </p>
+    <p class="info-item">
+      <b>Comments ${item.comments}</b>
+    </p>
+    <p class="info-item">
+      <b>Downloads ${item.downloads}</b>
+    </p>
+  </div>
+  </div>`).join('');
+  gallery.insertAdjacentHTML(`beforeend`,markup) 
+  }
 const API_KEY=`31935683-a10b01c36d3de5d3933439cde`
 const base_url=`https://pixabay.com/api/?key=`
 const fetchImages=async(name,pages)=>{
