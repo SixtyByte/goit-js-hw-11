@@ -24,8 +24,12 @@ body {
 li{list-style-type:none}
 
 .info{background-color: white;display: inline;}
-.gallery{display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; object-fit: cover; }
-.photo-card{object-fit: cover; margin-top: 20px;  }
-.info{background-color: white;display: flex; gap:20px; justify-content: center;width: 600px}
+.gallery{display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; object-fit: cover;  }
+.photo-card{object-fit: cover; margin-top: 20px; object-fit: cover; }
+.info{background-color: white;display: flex; gap:20px; justify-content: center;width: 600px; }
 
-.image-item{width:600px}
+.image-item{width:600px;height: 700px;  border-style: solid; object-fit: cover ;border-radius: 20px; border-color: white;}
+button{background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+ }

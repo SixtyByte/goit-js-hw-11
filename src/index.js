@@ -28,7 +28,7 @@ if (text=='') {return Notify.failure("Напиши щось")
   
 }
 if (text==""){clearMarkupAll()}
-fetchImages(text,1).then(data=>{createGallery(data); if(data.data.hits.length<40&data.data.hits.length>1){ loadMore.disabled=true; Notify.failure(`We're sorry, but you've reached the end of search results.".`);}
+fetchImages(text,1).then(data=>{createGallery(data); if(data.data.hits.length<40&data.data.hits.length>1){ loadMore.hidden=true; Notify.failure(`We're sorry, but you've reached the end of search results.".`);}
 else if(data.data.hits.length>=40){loadMore.hidden=false;} else if (data.data.hits.length==0) {Notify.failure(`Oops, there no image`);loadMore.hidden=true;
 }}
 
